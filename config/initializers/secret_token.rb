@@ -9,4 +9,19 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Datapages::Application.config.secret_key_base = '50c7eb5a604a8be16cc9a0cd3e984340779e45e1407598f2ddd1ff058c5dec64e62ecb89187f47345d5b78d389d30cadbae1c92d8fc7eac5ead9cc11f1f5dc9b'
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+Datapages::Application.config.secret_key_base = secure_token
