@@ -157,7 +157,41 @@ background-color: rgba(100,255,100,0.1); // I don't know the .well color, so I u
   border-color: #CDCDCD;
 }
 
+
 /* Spacings */
 .bottomspace {
   padding-bottom: 30px;
+}
+
+.topspace30 {
+  padding-top: 30px;
+}
+
+.topspace50 {
+  padding-top: 50px;
+}
+
+/* Contents Page list */
+.contents ol { 
+  counter-reset: item 
+}
+
+.contents li { 
+  display: block; 
+  margin: 1em 0;
+  color: #666666;
+}
+
+.contents li a { 
+  font-size: 1.2em;
+  color: #666666;
+}
+
+.contents li:before { 
+  content: counters(item, ".") "."; counter-increment: item; padding-right:10px; margin-left:-20px;
+}
+
+/* Next/Previous navigation */
+.next_previous { 
+  font-size: 1.3em;
 }
